@@ -111,8 +111,10 @@ public class FlutterIotWifiPlugin implements FlutterPlugin, MethodCallHandler {
             final NetworkSpecifier specifier =
                     new WifiNetworkSpecifier.Builder()
                             .setSsidPattern(new PatternMatcher(ssid, prefix != null ? PatternMatcher.PATTERN_PREFIX : PatternMatcher.PATTERN_LITERAL))
-                            .setWpa2Passphrase(password)
+//                            .setWpa2Passphrase(password)
                             .build();
+            if(password != null && password.equ){
+            }
             final NetworkRequest request =
                     new NetworkRequest.Builder()
                             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
