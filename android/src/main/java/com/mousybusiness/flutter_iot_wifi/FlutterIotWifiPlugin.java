@@ -111,6 +111,7 @@ public class FlutterIotWifiPlugin implements FlutterPlugin, MethodCallHandler {
             final NetworkSpecifier specifier =
                     new WifiNetworkSpecifier.Builder()
                             .setSsidPattern(new PatternMatcher(ssid, prefix != null ? PatternMatcher.PATTERN_PREFIX : PatternMatcher.PATTERN_LITERAL))
+                            .setWpa2Passphrase(password)
                             .build();
             final NetworkRequest request =
                     new NetworkRequest.Builder()
@@ -118,6 +119,7 @@ public class FlutterIotWifiPlugin implements FlutterPlugin, MethodCallHandler {
                             .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                             .setNetworkSpecifier(specifier)
                             .build();
+
             final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
                 @Override
                 public void onLosing(@NonNull Network network, int maxMsToLive) {
